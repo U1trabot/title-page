@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
+<style>
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+}
+input {
+  width: 30vw;
+}
+button {
+  width: 5vw;
+  margin-left: 0.25vw;
+}
+</style>
+</head>
+<body>
+<div class="center">
+<input type="text" id="input" value="">
+
+<button onclick="settitle()" type="button">Submit</button>
+</div>
+<script>
+document.getElementById("input").addEventListener("keydown", function (e) {
+    if (e.code === "Enter") {  //checks whether the pressed key is "Enter"
+        settitle(e);
+    }
+});
+function settitle() {
+  var x = document.getElementById("input").value;
+  document.title = x;
+};
+</script>
+</body>
+</html>

@@ -49,8 +49,8 @@ document.getElementById("input").addEventListener("keydown", function (e) {
 });
 // Set the title and local storage when button pressed (or Enter hit)
 function settitle() {
-  var x = document.getElementById("input").value;
-  document.title = x;
+  var newTitle = document.getElementById("input").value;
+  document.title = newTitle;
   localStorage.setItem(tabId, newTitle);
 }
 </script>

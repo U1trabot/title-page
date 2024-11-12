@@ -28,38 +28,31 @@ button {
 <button onclick="settitle()" type="button">Submit</button>
 </div>
 <script>
-window.onload = checkCookie();
-function getCookie(cname) {
-  let name = cname + "=";
-  let decodedCookie = decodeURIComponent(document.cookie);
-  let ca = decodedCookie.split(';');
-  for(let i = 0; i <ca.length; i++) {
-    let c = ca[i];
-    while (c.charAt(0) == ' ') {
-      c = c.substring(1);
-    }
-    if (c.indexOf(name) == 0) {
-      return c.substring(name.length, c.length);
-    }
-  }
-  return "";
-};
+// Check if this tab has a unique identifier
+let tabId = sessionStorage.getItem('tabId');
+if (!tabId) {
+    // Generate a new ID for this tab if it doesn't have one
+    tabId = 'tab-' + crypto.randomUUID();
+    sessionStorage.setItem('tabId', tabId);
+}
+
+// Load the title from localStorage if it exists
+const savedTitle = localStorage.getItem(tabId);
+if (savedTitle) {
+    document.title = savedTitle;
+}
+
 document.getElementById("input").addEventListener("keydown", function (e) {
     if (e.code === "Enter") {  //checks whether the pressed key is "Enter"
         settitle(e);
     }
 });
+// Set the title and local storage when button pressed (or Enter hit)
 function settitle() {
   var x = document.getElementById("input").value;
   document.title = x;
-  document.cookie = "title="+x; 
-};
-function checkCookie() {
-  let title = getCookie("title");
-  if (title != "") {
-    document.title = title;
-  }
-};
+  localStorage.setItem(tabId, newTitle);
+}
 </script>
 </body>
 </html>

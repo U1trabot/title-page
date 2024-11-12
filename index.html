@@ -28,6 +28,24 @@ button {
 <button onclick="settitle()" type="button">Submit</button>
 </div>
 <script>
+window.onload = function() {
+  checkCookie();
+};
+function getCookie(cname) {
+  let name = cname + "=";
+  let decodedCookie = decodeURIComponent(document.cookie);
+  let ca = decodedCookie.split(';');
+  for(let i = 0; i <ca.length; i++) {
+    let c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+};
 document.getElementById("input").addEventListener("keydown", function (e) {
     if (e.code === "Enter") {  //checks whether the pressed key is "Enter"
         settitle(e);
@@ -36,6 +54,13 @@ document.getElementById("input").addEventListener("keydown", function (e) {
 function settitle() {
   var x = document.getElementById("input").value;
   document.title = x;
+  document.cookie = "title="+x; 
+};
+function checkCookie() {
+  let title = getCookie("title";
+  if (title != "") {
+    document.title = title;
+  }
 };
 </script>
 </body>

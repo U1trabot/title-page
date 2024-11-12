@@ -28,9 +28,7 @@ button {
 <button onclick="settitle()" type="button">Submit</button>
 </div>
 <script>
-window.onload = function() {
-  checkCookie();
-};
+window.onload = checkCookie();
 function getCookie(cname) {
   let name = cname + "=";
   let decodedCookie = decodeURIComponent(document.cookie);
